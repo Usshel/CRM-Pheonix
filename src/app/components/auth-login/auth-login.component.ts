@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { LoginService } from '../../services/login.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-auth-login',
@@ -12,19 +12,20 @@ import { LoginService } from '../../services/login.service';
 export class AuthLoginComponent {
   readonly login: FormGroup = new FormGroup({ email: new FormControl('',[Validators.required, Validators.email]), password: new FormControl('', Validators.required) });
 
-  constructor(private _loginService: LoginService, private _router: Router, private _cd: ChangeDetectorRef) {
+  constructor(private _authService: AuthService, private _router: Router, private _cd: ChangeDetectorRef) {
   }
 
   onLoginSubmitted(login: FormGroup): void {
-    this._loginService.userLogin(login.value.email, login.value.password).subscribe(
+    this._authService.userLogin(login.value.email, login.value.password).subscribe(
       {
         error: (err) => {
           this.login.setErrors({
             beValid: err.error.message
           })
+          this._cd.markForCheck();
         },
         complete: () => this._router.navigate(['leads'])
-        
+
       },
     );
     this._cd.markForCheck();
