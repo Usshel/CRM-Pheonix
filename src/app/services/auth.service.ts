@@ -11,8 +11,6 @@ export class AuthService {
   private _currentUserRefreshTokenSubject: BehaviorSubject<string> = new BehaviorSubject<string>('');
   public currentUserRefreshToken$: Observable<string> = this._currentUserRefreshTokenSubject.asObservable();
 
-  private _currentUserEmailVerifiedSubject: BehaviorSubject<string> = new BehaviorSubject<string>('');
-  public currentUserEmailVerified$: Observable<string> = this._currentUserEmailVerifiedSubject.asObservable();
 
   constructor(private _httpClient: HttpClient) {
   }
