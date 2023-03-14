@@ -23,7 +23,13 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes), AuthLoginComponentModule, VerifyComponentModule, CompleteProfileComponentModule, LeadsComponentModule, LoggedOutComponentModule, AuthRegisterComponentModule],
+  imports: [RouterModule.forRoot(routes), 
+    AuthLoginComponentModule, 
+    VerifyComponentModule, 
+    CompleteProfileComponentModule, 
+    LeadsComponentModule, 
+    LoggedOutComponentModule, 
+    AuthRegisterComponentModule],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
